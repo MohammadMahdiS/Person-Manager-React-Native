@@ -3,10 +3,25 @@ import React from 'react'
 
 export default function Header() {
   return (
-    <View>
-      <Text>مدیریت کننده اشخاص</Text>
+    <View style={styles.header}>
+      <Text style={styles.title}>مدیریت کننده اشخاص</Text>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  header: {
+    height: 120,
+    padding: 25,
+    backgroundColor: "orangered",
+  },
+  title: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 25,
+    fontWeight: "bold",
+    
+
+  }
+
+})

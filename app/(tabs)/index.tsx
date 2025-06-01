@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, {useState} from 'react'
 import Header from '@/components/Header';
+import Persons from '@/components/Persons';
 
 export default function index() {
   const [persons, setPersons] = useState([
@@ -9,6 +10,10 @@ export default function index() {
     { name: "مالک لرائایی", key: "3"},
     { name: "قباد ثراجانی", key: "4"},
   ])
+
+  const pressHandler = (key) => {
+    setPersons(prevPersons => prevPersons.filter(p => p.key != key))
+  }
 
   return (
     <View style={styles.container}>
@@ -19,7 +24,7 @@ export default function index() {
         {/* Add Person */}
         <View style={styles.items}>
           <FlatList data={persons} renderItem={({item}) => (
-            <Text>{item.name}</Text>
+            <Persons person={item} pressHandler={pressHandler} />
           )} />
         </View>
       </View>
