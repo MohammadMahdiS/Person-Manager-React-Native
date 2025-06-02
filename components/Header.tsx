@@ -4,7 +4,7 @@ import React from 'react'
 export default function Header() {
   return (
     <View style={styles.header}>
-      <Text style={styles.title}>مدیریت کننده اشخاص</Text>
+      <Text style={styles.title}>مدیریت اشخاص</Text>
     </View>
   )
 }

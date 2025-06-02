@@ -1,7 +1,8 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { Alert, FlatList, Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React, {useState} from 'react'
 import Header from '@/components/Header';
 import Persons from '@/components/Persons';
+import AddPerson from '@/components/AddPerson';
 
 export default function index() {
   const [persons, setPersons] = useState([
@@ -11,17 +12,45 @@ export default function index() {
     { name: "قباد ثراجانی", key: "4"},
   ])
 
+  const [person, setPerson] = useState("") 
+
   const pressHandler = (key) => {
     setPersons(prevPersons => prevPersons.filter(p => p.key != key))
   }
 
+
+  const submitHandler = () => {
+    if (person.length > 3 ) {
+      setPersons( (prevPersons) => [
+      ...prevPersons,
+      {
+        name: person,
+        key: Math.floor(Math.random() * 1000).toString()
+      }
+    ]);
+    setPerson("");
+    Keyboard.dismiss();
+    }else {
+      Alert.alert("پیام", "بایستی بیشتر از سه کاراکتر باشد", [
+        { text: "بله", onPress: () => console.log("Alert in Index is Closed")}
+      ])
+    }
+  }
+
   return (
-    <View style={styles.container}>
+    <TouchableWithoutFeedback>
+
+      <View style={styles.container}>
 
       {/* Header */}
       <Header />
       <View style={styles.body}>
         {/* Add Person */}
+        <AddPerson 
+          submitHandler = {submitHandler}
+          setPerson = {setPerson}
+          person = {person}
+        />
         <View style={styles.items}>
           <FlatList data={persons} renderItem={({item}) => (
             <Persons person={item} pressHandler={pressHandler} />
@@ -32,6 +61,8 @@ export default function index() {
 
 
     </View>
+    
+    </TouchableWithoutFeedback>
   )
 }
 
