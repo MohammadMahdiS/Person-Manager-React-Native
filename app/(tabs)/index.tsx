@@ -3,13 +3,17 @@ import React, {useState} from 'react'
 import Header from '@/components/Header';
 import Persons from '@/components/Persons';
 import AddPerson from '@/components/AddPerson';
-
+import PlayGround from '@/components/PlayGround';
+// Components: Header, Persons, AddPerson, PlayGround
 export default function index() {
   const [persons, setPersons] = useState([
     { name: "امیرحسین غزلی", key: "1"},
     { name: "ثریا همتی", key: "2"},
     { name: "مالک لرائایی", key: "3"},
     { name: "قباد ثراجانی", key: "4"},
+    { name: "احسان یوسفی", key: "4"},
+    { name: "شمشماد گلاجانی", key: "4"},
+    { name: "محسن فتحی", key: "4"},
   ])
 
   const [person, setPerson] = useState("") 
@@ -38,6 +42,7 @@ export default function index() {
   }
 
   return (
+    // <PlayGround />
     <TouchableWithoutFeedback>
 
       <View style={styles.container}>
@@ -74,8 +79,12 @@ const styles = StyleSheet.create({
   },
   body: {
     padding: 40,
+    backgroundColor: "ghostwhite",
+    flex: 1,
   },
   items: {
     marginTop: 20,
+    flex: 1,
+    backgroundColor: "aliceblue"
   }
 })
