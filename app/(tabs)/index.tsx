@@ -7,21 +7,30 @@ import PlayGround from '@/components/PlayGround';
 // Components: Header, Persons, AddPerson, PlayGround
 export default function index() {
   const [persons, setPersons] = useState([
-    { name: "امیرحسین غزلی", key: "1"},
-    { name: "ثریا همتی", key: "2"},
-    { name: "مالک لرائایی", key: "3"},
-    { name: "قباد ثراجانی", key: "4"},
-    { name: "احسان یوسفی", key: "4"},
-    { name: "شمشماد گلاجانی", key: "4"},
-    { name: "محسن فتحی", key: "4"},
+    { name: "امیرحسین غزلی", key: "1", completed: false},
+    { name: "ثریا همتی", key: "2", completed: false},
+    { name: "مالک لرائایی", key: "3", completed: false},
+    { name: "قباد ثراجانی", key: "4", completed: false},
+    { name: "احسان یوسفی", key: "5", completed: false},
+    { name: "شمشماد گلاجانی", key: "6", completed: false},
+    { name: "محسن فتحی", key: "7", completed: false},
   ])
 
   const [person, setPerson] = useState("") 
 
   const pressHandler = (key) => {
-    setPersons(prevPersons => prevPersons.filter(p => p.key != key))
+    setPersons(prevPersons => prevPersons.filter((p) => p.key != key))
   }
 
+  const completeHandler = (key) => {
+    const allPersons = [...persons];
+    const personIndex = allPersons.findIndex((p) => p.key == key);
+    const person = allPersons[personIndex];
+    person.completed = !person.completed;
+    allPersons[personIndex] = person;
+
+    setPerson(allPersons);
+  } 
 
   const submitHandler = () => {
     if (person.length > 3 ) {
@@ -29,7 +38,8 @@ export default function index() {
       ...prevPersons,
       {
         name: person,
-        key: Math.floor(Math.random() * 1000).toString()
+        key: Math.floor(Math.random() * 1000).toString(),
+        completed: false,
       }
     ]);
     setPerson("");
@@ -58,7 +68,7 @@ export default function index() {
         />
         <View style={styles.items}>
           <FlatList data={persons} renderItem={({item}) => (
-            <Persons person={item} pressHandler={pressHandler} />
+            <Persons person={item} pressHandler={pressHandler} completeHandler={completeHandler} />
           )} />
         </View>
       </View>
