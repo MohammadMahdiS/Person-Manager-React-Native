@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontSize: 25,
+    fontFamily: "byekan",
     fontWeight: "bold",
-    
 
   }
 

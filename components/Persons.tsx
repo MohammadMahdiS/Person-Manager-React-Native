@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
   personName: {
     textAlign: "center",
     fontSize: 17,
+    fontFamily: "byekan",
     fontWeight: "bold",
+
   }
 })
